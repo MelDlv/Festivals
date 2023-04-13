@@ -23,7 +23,7 @@ public class DataLoader implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         if (mFestivalRepository.count() == 0) {
-            ClassPathResource resource = new ClassPathResource(" static/festivals.json ");
+            ClassPathResource resource = new ClassPathResource("/static/festivals.json");
             ObjectMapper objectMapper = new ObjectMapper();
             List<Festival> festivals = objectMapper.readValue(
                     resource.getInputStream(), new TypeReference<List<Festival>>() {

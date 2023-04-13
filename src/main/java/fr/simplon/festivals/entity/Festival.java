@@ -1,21 +1,60 @@
 package fr.simplon.festivals.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 import java.util.Date;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
-@Table
+@Table(name="festivals")
 public class Festival {
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd") // Sinon problème formulaire Thymeleaf th:field avec les <input type="date">
+    private LocalDate debut;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd") // Sinon problème formulaire Thymeleaf th:field avec les <input type="date">
+    private LocalDate fin;
     @Id
-    private long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     private String nom;
     private String ville;
     private int cp;
-    private Date debut;
-    private Date fin;
     private double lat;
     private double lon;
     private String lieu;
+
+    public LocalDate getDebut() {
+        return debut;
+    }
+
+    public void setDebut(LocalDate debut) {
+        this.debut = debut;
+    }
+
+    public LocalDate getFin() {
+        return fin;
+    }
+
+    public void setFin(LocalDate fin) {
+        this.fin = fin;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNom() {
         return nom;
@@ -41,30 +80,6 @@ public class Festival {
         this.cp = cp;
     }
 
-    public String getLieu() {
-        return lieu;
-    }
-
-    public void setLieu(String lieu) {
-        this.lieu = lieu;
-    }
-
-    public Date getDebut() {
-        return debut;
-    }
-
-    public void setDebut(Date debut) {
-        this.debut = debut;
-    }
-
-    public Date getFin() {
-        return fin;
-    }
-
-    public void setFin(Date fin) {
-        this.fin = fin;
-    }
-
     public double getLat() {
         return lat;
     }
@@ -81,11 +96,11 @@ public class Festival {
         this.lon = lon;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getLieu() {
+        return lieu;
     }
 
-    public Long getId() {
-        return id;
+    public void setLieu(String lieu) {
+        this.lieu = lieu;
     }
 }
