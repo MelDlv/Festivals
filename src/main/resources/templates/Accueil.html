@@ -16,14 +16,12 @@
 
 <h1>Liste des festivals</h1>
 <table>
-    <thead>
     <th>Nom</th>
     <th>Ville</th>
     <th>Lieu</th>
     <th>Début</th>
     <th>Fin</th>
     <th>Éditer</th>
-    </thead>
     <tbody th:each="festival : ${festivals}">
     <tr>
         <td th:text="${festival.nom}"></td>
@@ -52,7 +50,7 @@
         .then(response => response.json())
         .then(festivals => {
             festivals.forEach(festival => {
-                addMarkerOnMap(festival.lat, festival.lon, festival.nom, festival.ville);
+                addMarkerOnMap(parseFloat(festival.lat), parseFloat(festival.lon), festival.nom, festival.ville);
             });
         });
 </script>
