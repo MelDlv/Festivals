@@ -14,25 +14,27 @@
     <button id="Ajouter"><a href="/AjouterFestival">Ajouter un Festival</a></button>
 </div>
 
-<h1>Liste des festivals</h1>
-<table>
-    <th>Nom</th>
-    <th>Ville</th>
-    <th>Lieu</th>
-    <th>Début</th>
-    <th>Fin</th>
-    <th>Éditer</th>
-    <tbody th:each="festival : ${festivals}">
-    <tr>
-        <td th:text="${festival.nom}"></td>
-        <td th:text="${festival.ville}"></td>
-        <td th:text="${festival.lieu}"></td>
-        <td th:text="${festival.debut}"></td>
-        <td th:text="${festival.fin}"></td>
-        <td><a th:href="@{/EditerFestival/{id}(id=${festival.id})}">Éditer</a></td>
-    </tr>
-    </tbody>
-</table>
+<div class="listefestivals">
+    <h1>Liste des festivals</h1>
+    <table>
+        <th>Nom</th>
+        <th>Ville</th>
+        <th>Lieu</th>
+        <th>Début</th>
+        <th>Fin</th>
+        <th>Éditer</th>
+        <tbody th:each="festival : ${festivals}">
+        <tr>
+            <td th:text="${festival.nom}"></td>
+            <td th:text="${festival.ville}"></td>
+            <td th:text="${festival.lieu}"></td>
+            <td th:text="${festival.debut}"></td>
+            <td th:text="${festival.fin}"></td>
+            <td><a th:href="@{/EditerFestival/{id}(id=${festival.id})}" class="bouton-edit">Éditer</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <script>
     var mymap = L.map('mapid').setView([51.505, -0.09], 13);
@@ -41,16 +43,16 @@
         attribution: '&copy; OpenStreetMap contributors'
     }).addTo(mymap);
 
-    function addMarkerOnMap(lat, lon, nom, ville) {
+    function addMarkerOnMap(lat, lon, nom) {
         var marker = L.marker([lat, lon]).addTo(mymap);
-        marker.bindPopup("<b>" + nom + "</b><br>" + ville).openPopup();
+        marker.bindPopup("<b>" + nom + "</b><br>").openPopup();
     }
 
     fetch('/festivals')
         .then(response => response.json())
         .then(festivals => {
             festivals.forEach(festival => {
-                addMarkerOnMap(parseFloat(festival.lat), parseFloat(festival.lon), festival.nom, festival.ville);
+                addMarkerOnMap(parseFloat(festival.lat), parseFloat(festival.lon), festival.nom);
             });
         });
 </script>

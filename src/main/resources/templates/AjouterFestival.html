@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="formulaire">
-    <h1>Créer un nouveau festival</h1>
+    <h1 id="titre">Créer un nouveau festival</h1>
     <form th:action="@{/AjouterFestival}" th:object="${festival}" method="post">
 
         <label>Nom :</label><input type="text" th:field="*{nom}" required/>

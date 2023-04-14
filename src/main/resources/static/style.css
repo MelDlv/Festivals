@@ -29,44 +29,51 @@ input {
     margin-bottom: 20px;
 }
 
-input[type="submit"], button{
-    background-color: #4b5fc2;
-    color: white;
-    padding: 12px 24px;
-    border-radius: 6px;
-    font-size: 16px;
-    border: none;
-}
-
-button a {
-    color: white;
-}
 #mapid {
     height: 500px;
     width: 700px;
     margin: 30px;
 }
-
-table {
+.listefestivals {
+    background-color: #f8f8f8;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    margin: 20px;
     border-collapse: collapse;
-    margin-bottom: 20px;
 }
 
-thead {
-    background-color: #bdbdbd;
+th {
     font-weight: bold;
+    text-align: left;
     padding: 10px;
-    text-align: left;
 }
 
- td {
-    background-color: white;
-    padding: 8px;
+td {
+    border-bottom: 1px solid #ddd;
     text-align: left;
+    padding: 10px;
 }
 
-h1 {
+.bouton-edit, input[type="submit"], button, button a{
+    background-color: #3498db;
+    color: #fff;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.bouton-edit:hover {
+    background-color: #2980b9;
+}
+
+#titre{
     color: white;
 }
-
 

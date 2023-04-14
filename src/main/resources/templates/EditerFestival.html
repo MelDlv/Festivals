@@ -7,16 +7,13 @@
     <title>Modifier un festival</title>
 </head>
 <body>
-<h1>Modifier un festival</h1>
+<h1 id="titre">Modifier un festival</h1>
 <form th:action="@{/update/{id}(id=${festival.id})}" th:object="${festival}" method="post">
     <label>Nom:</label>
     <input type="text" th:field="*{nom}"/>
     <br/>
     <label>Ville:</label>
     <input type="text" th:field="*{ville}"/>
-    <br/>
-    <label>Code postal:</label>
-    <input type="text" th:field="*{cp}"/>
     <br/>
     <label>Lieu:</label>
     <input type="text" th:field="*{lieu}"/>
@@ -28,6 +25,7 @@
     <input type="date" th:field="*{fin}" />
     <br/>
     <input type="submit" value="Modifier"/>
+    <input type="button" value="Annuler"/>
 </form>
 </body>
 </html>
