@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+    <link href="/style.css" rel="stylesheet">
+</head>
+
+<body>
+<div id="mapid"></div>
+
+<div class="bas">
+    <button id="Ajouter"><a href="/AjouterFestival">Ajouter un Festival</a></button>
+</div>
+
+<h1>Liste des festivals</h1>
+<table>
+    <thead>
+    <th>Nom</th>
+    <th>Ville</th>
+    <th>Lieu</th>
+    <th>Début</th>
+    <th>Fin</th>
+    <th>Éditer</th>
+    </thead>
+    <tbody th:each="festival : ${festivals}">
+    <tr>
+        <td th:text="${festival.nom}"></td>
+        <td th:text="${festival.ville}"></td>
+        <td th:text="${festival.lieu}"></td>
+        <td th:text="${festival.debut}"></td>
+        <td th:text="${festival.fin}"></td>
+        <td><a th:href="@{/EditerFestival/{id}(id=${festival.id})}">Éditer</a></td>
+    </tr>
+    </tbody>
+</table>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script>
+    var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(mymap);
+
+    function addMarkerOnMap(lat, lon, nom, ville) {
+        var marker = L.marker([lat, lon]).addTo(mymap);
+        marker.bindPopup("<b>" + nom + "</b><br>" + ville).openPopup();
+    }
+
+    fetch('/festivals')
+        .then(response => response.json())
+        .then(festivals => {
+            festivals.forEach(festival => {
+                addMarkerOnMap(festival.lat, festival.lon, festival.nom, festival.ville);
+            });
+        });
+</script>
+</body>
+</html>

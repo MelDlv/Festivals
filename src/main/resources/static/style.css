@@ -1,0 +1,72 @@
+body {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    font-family: Bahnschrift;
+    margin: auto;
+    background-image: url('/img/foule.png');
+}
+
+form {
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+label {
+    font-size: 20px;
+    padding: 20px;
+}
+
+input {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+input[type="submit"], button{
+    background-color: #4b5fc2;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 16px;
+    border: none;
+}
+
+button a {
+    color: white;
+}
+#mapid {
+    height: 500px;
+    width: 700px;
+    margin: 30px;
+}
+
+table {
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+thead {
+    background-color: #bdbdbd;
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+}
+
+ td {
+    background-color: white;
+    padding: 8px;
+    text-align: left;
+}
+
+h1 {
+    color: white;
+}
+
+
