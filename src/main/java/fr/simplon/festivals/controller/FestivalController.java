@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @Controller
@@ -16,6 +17,13 @@ public class FestivalController {
     private FestivalRepository festivalRepository;
     @Autowired
     private FestivalDAOImpl festivalDAO;
+
+
+    @GetMapping("/festivals")
+    @ResponseBody
+    public List<Festival> getFestivals() {
+        return festivalDAO.getAllFestivals();
+    }
 
     @GetMapping("/")
     public String Accueil(Model model) {
@@ -29,6 +37,9 @@ public class FestivalController {
         model.addAttribute("festival", new Festival());
         return "AjouterFestival";
     }
+
+    @Autowired
+    private FestivalDAO FestivalDAO;
 
     @PostMapping("/AjouterFestival") // Mapping POST pour enregistrer un festival
     public String saveFestival(@ModelAttribute Festival festival) {
