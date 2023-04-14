@@ -24,6 +24,9 @@
     <label>Date de fin:</label>
     <input type="date" th:field="*{fin}" />
     <br/>
+    <input type="hidden" name="lat" th:value="${festival.lat}" />
+    <input type="hidden" name="lon" th:value="${festival.lon}" />
+
     <input type="submit" value="Modifier"/>
     <input type="button" value="Annuler"/>
 </form>
