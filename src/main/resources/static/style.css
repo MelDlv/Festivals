@@ -2,7 +2,7 @@ body {
     align-items: center;
     display: flex;
     flex-direction: column;
-    font-family: Bahnschrift;
+    font-family: Bahnschrift, sans-serif;
     margin: auto;
     background-image: url('/img/foule.png');
 }
@@ -68,6 +68,7 @@ td {
     cursor: pointer;
     text-decoration: none;
     transition: background-color 0.3s;
+    font-size: 17px;
 }
 
 .bouton-edit:hover {
